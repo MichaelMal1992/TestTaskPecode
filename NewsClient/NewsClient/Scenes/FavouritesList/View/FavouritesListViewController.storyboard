@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Favourites List View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="FavouritesListViewController" id="Y6W-OH-hqX" customClass="FavouritesListViewController" customModule="NewsClient" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nSt-vu-uUa">
+                                <rect key="frame" x="0.0" y="60" width="414" height="786"/>
+                            </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Lln-3X-eec">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nSt-vu-uUa" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="944-aD-gYb"/>
+                            <constraint firstItem="nSt-vu-uUa" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="FAT-bA-XfN"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="nSt-vu-uUa" secondAttribute="trailing" id="IEv-5G-WLv"/>
+                            <constraint firstItem="Lln-3X-eec" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="Qoe-G9-yII"/>
+                            <constraint firstItem="Lln-3X-eec" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="e2Q-8c-0bb"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="nSt-vu-uUa" secondAttribute="bottom" constant="16" id="rCQ-hG-d1f"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="Lln-3X-eec" id="Vaf-bH-1Cy"/>
+                        <outlet property="favouritesTableView" destination="nSt-vu-uUa" id="KOs-SK-epP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-178" y="48"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

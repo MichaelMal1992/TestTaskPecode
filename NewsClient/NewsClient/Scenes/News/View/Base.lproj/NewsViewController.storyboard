@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kDO-Kc-CuD">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Y27-3V-3L5">
+            <objects>
+                <navigationController id="kDO-Kc-CuD" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5ex-yD-dVB">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="0wL-zb-2Yc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fPf-K2-uJ4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-703" y="58"/>
+        </scene>
+        <!--News View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="NewsViewController" id="BYZ-38-t0r" customClass="NewsViewController" customModule="NewsClient" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="kvh-AG-2jW">
+                                <rect key="frame" x="10" y="104" width="394" height="34"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5l2-Mc-3vw">
+                                        <rect key="frame" x="0.0" y="0.0" width="331" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ggx-XM-F3A">
+                                        <rect key="frame" x="341" y="0.0" width="53" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <action selector="cancelKeyboardTextFieldButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0G1-S5-KSR"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9kN-Mo-u5t">
+                                <rect key="frame" x="0.0" y="154" width="414" height="692"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="igI-9V-Je9">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="kvh-AG-2jW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="CeD-oR-m6X"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9kN-Mo-u5t" secondAttribute="bottom" constant="16" id="Daq-fp-72D"/>
+                            <constraint firstItem="igI-9V-Je9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="EKg-ob-g3h"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kvh-AG-2jW" secondAttribute="trailing" constant="10" id="FYQ-aM-str"/>
+                            <constraint firstItem="9kN-Mo-u5t" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="PGv-lB-6pS"/>
+                            <constraint firstItem="kvh-AG-2jW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="R22-yw-LhA"/>
+                            <constraint firstItem="igI-9V-Je9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hId-D2-aZT"/>
+                            <constraint firstItem="9kN-Mo-u5t" firstAttribute="top" secondItem="kvh-AG-2jW" secondAttribute="bottom" constant="16" id="nuj-uI-fP3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9kN-Mo-u5t" secondAttribute="trailing" id="zcy-Wl-4Db"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="2lh-9t-B37">
+                        <barButtonItem key="leftBarButtonItem" image="increase.indent" catalog="system" style="done" id="iuS-5m-7BH">
+                            <connections>
+                                <action selector="filterBarButtonPressed:" destination="BYZ-38-t0r" id="aPF-3u-6ca"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="star" catalog="system" style="done" id="oz5-Yc-Em1">
+                            <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="1"/>
+                            <connections>
+                                <action selector="showFavouritesBarButtonPressed:" destination="BYZ-38-t0r" id="9F1-vP-DNF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="activityIndicator" destination="igI-9V-Je9" id="AlZ-Ch-lMw"/>
+                        <outlet property="cancelKeyboardTextFieldButton" destination="Ggx-XM-F3A" id="S0H-fL-4c0"/>
+                        <outlet property="filterBarButton" destination="iuS-5m-7BH" id="vgo-Yh-UbI"/>
+                        <outlet property="newsTableView" destination="9kN-Mo-u5t" id="tl3-H3-A0F"/>
+                        <outlet property="searchTextField" destination="5l2-Mc-3vw" id="doK-e7-UTn"/>
+                        <outlet property="showFavouritesBarButton" destination="oz5-Yc-Em1" id="Hmc-zv-Xut"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="185.50724637681162" y="57.589285714285708"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="increase.indent" catalog="system" width="128" height="89"/>
+        <image name="star" catalog="system" width="128" height="116"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
