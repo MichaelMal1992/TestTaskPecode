@@ -22,8 +22,9 @@ class FavouritesListViewController: UIViewController {
 
     private var imagesArrayData: [ImageData] = [] {
         didSet {
-            favouritesTableView.reloadData()
-            activityIndicator.stopAnimating()
+            if imagesArrayData.isEmpty == false {
+                favouritesTableView.reloadData()
+            }
         }
     }
     

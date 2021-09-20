@@ -27,6 +27,7 @@ class SourcesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        viewModel = SourcesViewModelImplementation(self)
         viewModel?.loadSources{ [ weak self ] array in
             self?.sourcesArray = array
         }
@@ -54,12 +55,7 @@ extension SourcesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let valueToSave = sourcesArray[indexPath.row]
-        UserDefaults.standard.setValue("sources=\(valueToSave)", forKey: "topHeadlines")
-        let viewModel = NewsViewModelImplementation.init(NewsViewController())
-        viewModel.loadRequest(filters: "sources=\(valueToSave)") { newsData, imagesData in
-            viewModel.viewController?.newsData = newsData
-            viewModel.viewController?.imagesData = imagesData
-        }
+        FiltersValue.shared.filter = "sources=\(valueToSave)"
         navigationController?.popToRootViewController(animated: true)
     }
 }

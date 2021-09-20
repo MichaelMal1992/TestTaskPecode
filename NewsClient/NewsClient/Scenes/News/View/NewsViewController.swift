@@ -38,6 +38,16 @@ class NewsViewController: UIViewController {
             newsTableView.reloadData()
         }
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel?.loadRequest { [weak self ] newsData in
+            self?.newsData = newsData
+            self?.viewModel?.loadImage(newsData: newsData) { imagesData in
+                self?.imagesData = imagesData
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,10 +56,6 @@ class NewsViewController: UIViewController {
         setupTextField()
         setupButtons()
         viewModel = NewsViewModelImplementation.init(self)
-        viewModel?.loadRequest(filters: "category=general") { [weak self ] newsData, imagesData in
-            self?.newsData = newsData
-            self?.imagesData = imagesData
-        }
     }
     
     @IBAction
@@ -72,9 +78,11 @@ class NewsViewController: UIViewController {
     
     @objc
     private func handleRefresh(_ refreshControl: UIRefreshControl) {
-        viewModel?.loadRequest(filters: "category=general") { [weak self ] newsData, imagesData in
+        viewModel?.loadRequest { [weak self ] newsData in
             self?.newsData = newsData
-            self?.imagesData = imagesData
+            self?.viewModel?.loadImage(newsData: newsData) { imagesData in
+                self?.imagesData = imagesData
+            }
         }
     }
     
@@ -172,9 +180,11 @@ extension NewsViewController: UIScrollViewDelegate {
             }
             switch isPagination {
             case true:
-                viewModel?.loadRequest(filters: "category=general") { [weak self ] newsData, imagesData in
+                viewModel?.loadRequest { [weak self ] newsData in
                     self?.newsData = newsData
-                    self?.imagesData = imagesData
+                    self?.viewModel?.loadImage(newsData: newsData) { imagesData in
+                        self?.imagesData = imagesData
+                    }
                 }
             case false:
                 return
@@ -192,9 +202,12 @@ extension NewsViewController: UITextFieldDelegate {
         cancelKeyboardTextFieldButton.isHidden = true
         if let text = textField.text,
            text.isEmpty == false {
-            viewModel?.loadRequest(filters: "q=\(text)") { [weak self ] newsData, imagesData in
+            FiltersValue.shared.filter = "q=\(text)"
+            viewModel?.loadRequest { [weak self ] newsData in
                 self?.newsData = newsData
-                self?.imagesData = imagesData
+                self?.viewModel?.loadImage(newsData: newsData) { imagesData in
+                    self?.imagesData = imagesData
+                }
             }
         } else {
             textField.becomeFirstResponder()

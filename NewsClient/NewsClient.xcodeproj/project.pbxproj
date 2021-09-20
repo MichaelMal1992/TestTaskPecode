@@ -40,6 +40,7 @@
 		844340D226F8287900538C79 /* CountryViewModelImplemetation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844340D126F8287900538C79 /* CountryViewModelImplemetation.swift */; };
 		844340D626F82AE500538C79 /* SourcesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844340D526F82AE500538C79 /* SourcesViewModel.swift */; };
 		844340D826F82AF600538C79 /* SourcesViewModelImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844340D726F82AF600538C79 /* SourcesViewModelImplementation.swift */; };
+		844340DA26F884C900538C79 /* FiltersValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844340D926F884C900538C79 /* FiltersValue.swift */; };
 		844F26EC26F0898A002B5288 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F26EB26F0898A002B5288 /* AppDelegate.swift */; };
 		844F26EE26F0898A002B5288 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F26ED26F0898A002B5288 /* SceneDelegate.swift */; };
 		844F26F026F0898A002B5288 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F26EF26F0898A002B5288 /* NewsViewController.swift */; };
@@ -89,6 +90,7 @@
 		844340D126F8287900538C79 /* CountryViewModelImplemetation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryViewModelImplemetation.swift; sourceTree = "<group>"; };
 		844340D526F82AE500538C79 /* SourcesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcesViewModel.swift; sourceTree = "<group>"; };
 		844340D726F82AF600538C79 /* SourcesViewModelImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcesViewModelImplementation.swift; sourceTree = "<group>"; };
+		844340D926F884C900538C79 /* FiltersValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersValue.swift; sourceTree = "<group>"; };
 		844F26E826F0898A002B5288 /* NewsClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		844F26EB26F0898A002B5288 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		844F26ED26F0898A002B5288 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				844340AD26F1F49200538C79 /* NewsSources.swift */,
+				844340D926F884C900538C79 /* FiltersValue.swift */,
 			);
 			path = CommonModel;
 			sourceTree = "<group>";
@@ -592,6 +595,7 @@
 				844F26F026F0898A002B5288 /* NewsViewController.swift in Sources */,
 				844340C626F81BE800538C79 /* FavouritesListViewModelImplementation.swift in Sources */,
 				844340A126F16AB700538C79 /* CategoryViewController.swift in Sources */,
+				844340DA26F884C900538C79 /* FiltersValue.swift in Sources */,
 				844340CC26F8240100538C79 /* CategoryViewModelImplementation.swift in Sources */,
 				8443409C26F1668E00538C79 /* EnumFilterList.swift in Sources */,
 				844340D026F8285C00538C79 /* CountryViewModel.swift in Sources */,

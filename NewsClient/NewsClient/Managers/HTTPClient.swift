@@ -16,7 +16,6 @@ class HTTPClient {
     private let endPointsForSources = "https://newsapi.org/v2/top-headlines/sources?"
     private let authorization = "Authorization"
 
-    
     private func makeGetRequest(url: URL,
                                 headers: [String: String]) -> URLRequest? {
         var request = URLRequest(url: url)
@@ -61,11 +60,10 @@ class HTTPClient {
     }
     
     func fetchAvailableNews(page: Int,
-                            filters: String,
                             queue: DispatchQueue = .main,
                             _ completion: @escaping (Result<NewsData, Error>, _ finishLoad: Bool) -> Void) {
         
-        guard let data = filters.data(using: .utf8),
+        guard let data = FiltersValue.shared.filter.data(using: .utf8),
               let str = String(data: data, encoding: .utf8) else {
             return
         }
@@ -119,21 +117,21 @@ class HTTPClient {
                             completion(.failure(error))
                         }
                     }
-                    guard let data = data else {
-                        print("no data in response")
-                        return
-                    }
-                    let image = UIImage(data: data) ?? UIImage(named: "notFoundImage_icon") ?? UIImage()
-                    queue.async {
-                        let imageData = ImageData(name: link, image: image)
-                        array.append(imageData)
+                    if let data = data {
+                        let image = UIImage(data: data) ?? UIImage(named: "notFoundImage_icon") ?? UIImage()
+                        queue.async {
+                            let imageData = ImageData(name: link, image: image)
+                            array.append(imageData)
+                        }
                     }
                     group.leave()
                 }
                 task.resume()
             }
             group.notify(queue: queue, execute: {
-                completion(.success(array))
+                queue.async {
+                    completion(.success(array))
+                }
             })
         }
     }

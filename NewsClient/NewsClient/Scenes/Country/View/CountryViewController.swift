@@ -54,11 +54,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let valueToSave = countriesArray[indexPath.row]
-        let viewModel = NewsViewModelImplementation.init(NewsViewController())
-        viewModel.loadRequest(filters: "country=\(valueToSave)") { newsData, imagesData in
-            viewModel.viewController?.newsData = newsData
-            viewModel.viewController?.imagesData = imagesData
-        }
+        FiltersValue.shared.filter = "country=\(valueToSave)"
         navigationController?.popToRootViewController(animated: true)
     }
 }

@@ -54,11 +54,7 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let valueToSave = categoriesArray[indexPath.row]
-        let viewModel = NewsViewModelImplementation.init(NewsViewController())
-        viewModel.loadRequest(filters: "category=\(valueToSave)") { newsData, imagesData in
-            viewModel.viewController?.newsData = newsData
-            viewModel.viewController?.imagesData = imagesData
-        }
+        FiltersValue.shared.filter = "category=\(valueToSave)"
         navigationController?.popToRootViewController(animated: true)
     }
 }

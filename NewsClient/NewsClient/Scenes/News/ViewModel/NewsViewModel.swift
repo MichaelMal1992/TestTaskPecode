@@ -9,7 +9,9 @@ import Foundation
 
 protocol NewsViewModel {
 
-    func loadRequest(filters: String, _ comletion: @escaping (NewsData, [ImageData]) -> Void)
+    func loadRequest(_ comletion: @escaping (NewsData) -> Void)
+    
+    func loadImage(newsData: NewsData, _ completion: @escaping ([ImageData]) -> Void)
 
     var isPagination: Bool { get set }
 }
