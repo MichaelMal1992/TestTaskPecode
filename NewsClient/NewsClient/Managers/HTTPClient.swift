@@ -61,12 +61,11 @@ class HTTPClient {
     }
     
     func fetchAvailableNews(page: Int,
+                            filters: String,
                             queue: DispatchQueue = .main,
-                            _ completion: @escaping (Result<NewsData, Error>,
-                                                     _ finishLoad: Bool) -> Void) {
+                            _ completion: @escaping (Result<NewsData, Error>, _ finishLoad: Bool) -> Void) {
         
-        guard let value = UserDefaults.standard.value(forKey: "topHeadlines") as? String,
-              let data = value.data(using: .utf8),
+        guard let data = filters.data(using: .utf8),
               let str = String(data: data, encoding: .utf8) else {
             return
         }
@@ -85,7 +84,6 @@ class HTTPClient {
                 return
             }
             guard let data = data else {
-                UserDefaults.standard.setValue("category=general", forKey: "topHeadlines")
                 print("no data in response")
                 return
             }

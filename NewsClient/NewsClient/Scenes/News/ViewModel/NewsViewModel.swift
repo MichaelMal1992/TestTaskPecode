@@ -6,9 +6,10 @@
 //
 
 import Foundation
-import UIKit
 
 protocol NewsViewModel {
 
-    var didLoadRequest: ((NewsData) -> Void)? { get set}
+    func loadRequest(filters: String, _ comletion: @escaping (NewsData, [ImageData]) -> Void)
+
+    var isPagination: Bool { get set }
 }

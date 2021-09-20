@@ -8,15 +8,19 @@
 import UIKit
 
 class FavouritesListViewController: UIViewController {
-    
-    @IBOutlet weak var favouritesTableView: UITableView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
+
     static let identifier = String(describing: FavouritesListViewController.self)
     
-    var favouritesNewsData: [FavouritesNewsData] = []
+    @IBOutlet
+    weak var favouritesTableView: UITableView!
+    @IBOutlet
+    weak var activityIndicator: UIActivityIndicatorView!
 
-    var imagesArrayData: [ImageData] = [] {
+    private var viewModel: FavouritesListViewModel?
+    
+    private var favouritesNewsData: [FavouritesNewsData] = []
+
+    private var imagesArrayData: [ImageData] = [] {
         didSet {
             favouritesTableView.reloadData()
             activityIndicator.stopAnimating()
@@ -25,6 +29,7 @@ class FavouritesListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = FavouritesListViewModelImplementaion(self)
         setupTableView()
         setupBarButtonItem()
     }
@@ -32,32 +37,17 @@ class FavouritesListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         favouritesNewsData = RealmManager.shared.getAll.sorted(by: {$0.publishedAt > $1.publishedAt})
-        loadImage()
+        viewModel?.loadImage(favouritesNewsData, { [weak self] imagesData in
+            self?.imagesArrayData = imagesData
+        })
     }
 
-    func loadImage() {
-        var strings: [String] = []
-        for string in favouritesNewsData {
-            if string.urlToImage.isEmpty == false {
-                strings.append(string.urlToImage)
-            }
-        }
-        HTTPClient.shared.downloadImage(strings) { [weak self] results in
-            switch results {
-            case .success(let data):
-                self?.imagesArrayData = data
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
-
-    func setupBarButtonItem() {
+    private func setupBarButtonItem() {
         let trashBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(trashBarButtonPressed(_:)))
         navigationItem.rightBarButtonItem = trashBarButtonItem
         
     }
-    func setupTableView() {
+    private func setupTableView() {
         let nib = UINib(nibName: FavouritesListTableViewCell.identifier, bundle: nil)
         let identifier = FavouritesListTableViewCell.identifier
         favouritesTableView.register(nib, forCellReuseIdentifier: identifier)
@@ -65,15 +55,15 @@ class FavouritesListViewController: UIViewController {
         favouritesTableView.dataSource = self
     }
 
-    @objc func trashBarButtonPressed(_ sender: UIBarButtonItem) {
+    @objc
+    private func trashBarButtonPressed(_ sender: UIBarButtonItem) {
         RealmManager.shared.deleteAll()
         favouritesNewsData.removeAll()
         favouritesTableView.reloadData()
     }
 }
 
-
-
+// TableView delegats
 extension FavouritesListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return favouritesNewsData.count

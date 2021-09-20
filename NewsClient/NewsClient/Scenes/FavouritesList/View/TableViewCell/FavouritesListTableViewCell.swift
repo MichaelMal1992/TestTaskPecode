@@ -17,16 +17,6 @@ class FavouritesListTableViewCell: UITableViewCell {
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var publishedLabel: UILabel!
     
-    
     static let identifier = String(describing: FavouritesListTableViewCell.self)
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-    }
     
 }

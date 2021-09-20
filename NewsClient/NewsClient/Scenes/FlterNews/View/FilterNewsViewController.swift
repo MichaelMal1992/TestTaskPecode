@@ -9,16 +9,17 @@ import UIKit
 
 class FilterNewsViewController: UIViewController {
 
-    @IBOutlet weak var filterTableView: UITableView!
-    
     static let identifier = String(describing: FilterNewsViewController.self)
+
+    @IBOutlet
+    weak var filterTableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
     }
 
-    func setupTableView() {
+    private func setupTableView() {
         let nib = UINib(nibName: FilterNewsTableViewCell.identifier, bundle: nil)
         let identifier = FilterNewsTableViewCell.identifier
         filterTableView.register(nib, forCellReuseIdentifier: identifier)
@@ -27,6 +28,7 @@ class FilterNewsViewController: UIViewController {
     }
 }
 
+// TableView delegats
 extension FilterNewsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return FilterList.allCases.count
